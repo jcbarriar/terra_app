@@ -1,20 +1,69 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            <ion-icon name="home" style="margin-right: 8px;"></ion-icon>
+            Inicio
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button>
+                <img src="assets/icon/logo.png" alt="Imagen" style="height: 40px; width: auto;"/>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">Home</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <div id="container">
+        <ion-card>
+            <ion-card-header color="primary">
+                <div class="os-header">
+                    <ion-icon name="clipboard-outline" class="os-header-icon"></ion-icon>
+                    <div>
+                        <ion-card-title>SAT1001</ion-card-title>
+                        <ion-card-subtitle>Realizado el 24/05/2024 19:20:19</ion-card-subtitle>
+                    </div>
+                </div>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-list>
+                    <ion-item>
+                        <ion-label>Empresa: Salmones Austral</ion-label>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-label>Otra información...</ion-label>
+                    </ion-item>
+                </ion-list>
+                <ion-button expand="block" color="danger" (click)="visualizar()">
+                    <ion-icon name="document-outline" slot="start" class="icon-button"></ion-icon>
+                    Visualizar
+                </ion-button>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+    <ion-fab id="btn-crear-os" vertical="bottom" horizontal="end">
+        <ion-fab-button click="crearOrden()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>
+
+<ion-tabs>
+    <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home" [routerLink]="['/home']">
+            <ion-icon name="home"></ion-icon>
+            Inicio
+        </ion-tab-button>
+        <ion-tab-button tab="logout" [routerLink]="['login']">
+            <ion-icon name="log-out"></ion-icon>
+            Cerrar Sesión
+        </ion-tab-button>
+    </ion-tab-bar>
+</ion-tabs>

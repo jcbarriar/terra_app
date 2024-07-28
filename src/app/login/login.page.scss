@@ -1,0 +1,33 @@
+
+.input{
+    font-weight: 300;
+}
+ion-item {
+    --background: #f1f1f1;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+.header{
+    margin-top: 100px;
+    margin-bottom: 80px;
+    text-align: center;
+
+    .subtitle{
+        color: gray;
+        font-size: 0.9rem;
+    }
+    .title{
+        font-size: 2rem;
+    }
+}
+
+.errorInput{
+    color: red;
+    font-weight: 300;
+    font-size: small;
+    padding-top: -16px;
+}
+
+#fab-logear {
+    margin-bottom: 10px;
+}
