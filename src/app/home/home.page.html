@@ -49,13 +49,13 @@
     </div>
 
     <ion-fab id="btn-crear-os" vertical="bottom" horizontal="end">
-        <ion-fab-button click="crearOrden()">
+        <ion-fab-button (click)="crearOrden()">
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>
 </ion-content>
 
-<ion-tabs>
+<!-- <ion-tabs>
     <ion-tab-bar slot="bottom">
         <ion-tab-button tab="home" [routerLink]="['/home']">
             <ion-icon name="home"></ion-icon>
@@ -66,4 +66,4 @@
             Cerrar Sesión
         </ion-tab-button>
     </ion-tab-bar>
-</ion-tabs>
+</ion-tabs> -->

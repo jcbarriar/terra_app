@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { OrdenServicioPage } from '../orden-servicio/orden-servicio.page';
 
 @Component({
     selector: 'app-home',
@@ -7,13 +9,20 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-    constructor() { }
+    constructor(
+        private modalController: ModalController
+    ) { }
 
     visualizar() {
         console.log('visualizo Orden de servicio')
     }
 
-    crearOrden() {
+    async crearOrden() {
         console.log('Crear Orden')
+        const modal = await this.modalController.create({
+            component: OrdenServicioPage,
+            componentProps: {}
+        });
+        return await modal.present();
     }
 }

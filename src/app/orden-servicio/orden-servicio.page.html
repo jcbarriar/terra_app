@@ -1,0 +1,132 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="dark">
+        <ion-title>Orden de Servicio</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="cerrarModal()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">Orden de Servicio</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <!-- Sección Datos del Cliente -->
+    <ion-list>
+        <ion-list-header color="secondary">
+            <ion-label>Datos del Cliente</ion-label>
+        </ion-list-header>
+
+        <ion-item>
+            <ion-label position="floating">Empresa</ion-label>
+            <ion-input type="text" [(ngModel)]="formData.empresa"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Dirección</ion-label>
+            <ion-input type="text" [(ngModel)]="formData.direccion"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Solicitado por</ion-label>
+            <ion-input type="text" [(ngModel)]="formData.solicitadoPor"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Teléfono</ion-label>
+            <ion-input type="tel" [(ngModel)]="formData.telefono"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" [(ngModel)]="formData.email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Nombre Equipo/Embarcación/Artefacto Naval</ion-label>
+            <ion-input type="text" [(ngModel)]="formData.nombreEquipo"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">CALL</ion-label>
+            <ion-input type="text" [(ngModel)]="formData.call"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">MMSI</ion-label>
+            <ion-input type="text" [(ngModel)]="formData.mmsi"></ion-input>
+        </ion-item>
+
+        <!-- Nueva Sección Características del Equipo -->
+        <ion-list-header color="secondary">
+            <ion-label>Características del Equipo / Embarcación / Artefacto Naval</ion-label>
+        </ion-list-header>
+
+        <ion-item>
+            <ion-label position="floating">Marca</ion-label>
+            <ion-input type="text" [(ngModel)]="formData.marca"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Modelo</ion-label>
+            <ion-input type="text" [(ngModel)]="formData.modelo"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Serie</ion-label>
+            <ion-input type="text" [(ngModel)]="formData.serie"></ion-input>
+        </ion-item>
+
+        <!-- Sección Observaciones -->
+        <ion-list-header color="secondary">
+            <ion-label>Observaciones / Daño Reportado</ion-label>
+        </ion-list-header>
+
+        <ion-item>
+            <ion-textarea placeholder="Ingrese Observación..." rows="3" [(ngModel)]="nuevaObservacion"></ion-textarea>
+            <!-- <ion-button (click)="agregarDetalle()" color="primary" fill="outline"><ion-icon name="add-outline"></ion-icon></ion-button> -->
+        </ion-item>
+
+        <ion-item>
+            <ion-button (click)="agregarDetalle('observacion')" color="primary" fill="outline">Agregar</ion-button>
+        </ion-item>
+
+        <!-- Lista de Observaciones -->
+        <ion-list>
+            <ion-item *ngFor="let item of formData.observaciones">
+                <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+                <ion-label>{{ item }}</ion-label>
+            </ion-item>
+        </ion-list>
+
+        <!-- Sección Descripción del Trabajo -->
+        <ion-list-header color="secondary">
+            <ion-label>Descripción del Trabajo</ion-label>
+        </ion-list-header>
+
+        <ion-item>
+            <ion-textarea placeholder="Ingrese Descripción..." rows="3" [(ngModel)]="nuevaDescripcion"></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+            <ion-button (click)="agregarDetalle('descripcion')" color="primary" fill="outline">Agregar</ion-button>
+        </ion-item>
+
+        <!-- Lista de Descripción del Trabajo -->
+        <ion-list>
+            <ion-item *ngFor="let item of formData.descripcionTrabajo">
+                <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+                <ion-label>{{ item }}</ion-label>
+            </ion-item>
+        </ion-list>
+
+        <ion-button expand="block" color="primary" (click)="guardar()">
+            Guardar Orden de Servicio
+        </ion-button>
+    </ion-list>
+</ion-content>
