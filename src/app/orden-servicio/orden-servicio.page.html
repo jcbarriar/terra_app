@@ -23,8 +23,11 @@
         </ion-list-header>
 
         <ion-item>
-            <ion-label position="floating">Empresa</ion-label>
-            <ion-input type="text" [(ngModel)]="formData.empresa"></ion-input>
+            <ion-select label="Empresa" interface="popover" label-placement="stacked" placeholder="Seleccione empresa" [(ngModel)]="formData.empresa">
+                <ion-select-option *ngFor="let empresa of empresas" [value]="empresa.id">
+                    {{ empresa.nombre }}
+                </ion-select-option>
+            </ion-select>
         </ion-item>
 
         <ion-item>
