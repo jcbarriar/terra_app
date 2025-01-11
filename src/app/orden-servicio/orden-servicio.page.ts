@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { DatosAppService } from '../services/datos-app.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
     selector: 'app-orden-servicio',
@@ -23,6 +24,7 @@ export class OrdenServicioPage implements OnInit {
         serie: string;
         observaciones: string[];
         descripcionTrabajo: string[];
+        id_usuario: any;
     } = {
             empresa: [],
             direccion: '',
@@ -36,7 +38,8 @@ export class OrdenServicioPage implements OnInit {
             modelo: '',
             serie: '',
             observaciones: [],
-            descripcionTrabajo: []
+            descripcionTrabajo: [],
+            id_usuario: null
         };
 
     nuevaObservacion: string = '';
@@ -45,7 +48,9 @@ export class OrdenServicioPage implements OnInit {
 
     constructor(
         private modalCtrl: ModalController,
-        private datosAppService: DatosAppService
+        private alertCtrl: AlertController,
+        private datosAppService: DatosAppService,
+        private apiService: ApiService
     ) { 
         this.empresas = [];
     }
@@ -79,7 +84,37 @@ export class OrdenServicioPage implements OnInit {
 
     guardar() {
         console.log('Datos de la Orden de Servicio:', this.formData);
-        this.cerrarModal();
+        const userData = this.datosAppService.getItem('usuario');
+        this.formData = {
+            ...this.formData,
+            id_usuario: userData.id
+        };
+        this.apiService.post('store', this.formData).subscribe(
+            (response: any) => {
+                console.log('Respuesta del servidor:', response);
+                if (response.status === 200) {
+                    this.alertCtrl.create({
+                        header: 'Orden de Servicio',
+                        message: response.mensaje,
+                        buttons: ['Aceptar']
+                    }).then(alert => {
+                        alert.present();
+                    });
+                    this.cerrarModal();
+                } else {
+                    this.alertCtrl.create({
+                        header: 'Orden de Servicio',
+                        message: response.mensaje,
+                        buttons: ['Aceptar']
+                    }).then(alert => {
+                        alert.present();
+                    });
+                }
+            },
+            (error) => {
+                console.error('Error al guardar la orden de servicio:', error);
+            }
+        );
     }
 
 }

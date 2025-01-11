@@ -4,6 +4,7 @@ import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { DatosAppService } from '../services/datos-app.service';
 
 @Component({
     selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginPage implements OnInit {
         private apiService: ApiService,
         private router: Router,
         private loadingCtrl: LoadingController,
-        private alertCtrl: AlertController
+        private alertCtrl: AlertController,
+        private datosAppService: DatosAppService
     ) {
         // la version tengo que definirla dentro del apiservice?? o debe ser en otro lado?
         this.app_version = this.apiService.app_version;
@@ -61,6 +63,8 @@ export class LoginPage implements OnInit {
                 if (response.status === 200 && response.usuario) {
                     // Redirige a la página de inicio
                     this.router.navigate(['/home']);
+                    this.datosAppService.setItem('usuario', response.usuario);
+                    console.log('Usuario logeado:', this.datosAppService.getItem('usuario'));
                 }
             },
             async error => {
